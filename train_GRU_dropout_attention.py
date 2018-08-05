@@ -480,23 +480,24 @@ if __name__ == '__main__':
                             nt=20,
                             nt_=20)
    
-    ## load data
+    # load data
     vocab, train_dict, test_dict = \
         cPickle.load(open(args['data'], 'rb'))
 
+    logger.info('load word vecs: {}'.format(args['We']))
     We = cPickle.load(open(args['We'], 'rb'))
 
     # print 'number of training sentences:', len(train_dict)
     # print 'number of classes:', args['c']
-
-    logger.info('number of training sentences: {}'.format(len(train_dict)))
-    logger.info('number of classes: {}'.format(args['c']))
 
     # add train_size
     train_size = len(train_dict)
 
     c = args['c']
     d = args['d']
+
+    logger.info('number of training sentences: {}'.format(len(train_dict)))
+    logger.info('number of classes: {}'.format(c))
     
     aux = {'padding': np.random.uniform(-0.2, 0.2, (d,)), 'punkt': np.random.uniform(-0.2, 0.2, (d,))}
     for tdata in [train_dict]:
@@ -522,9 +523,10 @@ if __name__ == '__main__':
                 err, aux, We = train(s, lstm_attention, aux, inst, We, \
                   args['d'], args['c'], len(vocab), train_size)
 
-                # lstring = 'epoch: ' + str(epoch) + ' batch_ind: ' + str(inst_ind) + \
-                #         ' error, ' + str(err) + ' time = '+ str(time.time()-now) + ' sec'
-                # print lstring
+                if inst_ind % 200 == 0:
+                    lstring = 'epoch: ' + str(epoch) + ' batch_ind: ' + str(inst_ind) + \
+                            ' error, ' + str(err) + ' time = '+ str(time.time()-now) + ' sec'
+                    print lstring
 
                 epoch_error += err
                 
@@ -534,7 +536,7 @@ if __name__ == '__main__':
             # done with epoch
             # print 'done with epoch ', epoch, ' epoch error = ', epoch_error, ' min error = ', min_error
             lstring = 'done with epoch ' + str(epoch) + ' epoch error = ' + str(epoch_error) \
-                     + ' min error = ' + str(min_error) + '\n\n'
+                     + ' min error = ' + str(min_error)
             logger.info(lstring)
 
             # save parameters if the current model is better than previous best model
@@ -543,10 +545,3 @@ if __name__ == '__main__':
                 print 'saving model...'
 
     outcome.close()
-    
-
-    
-    
-
-
-
