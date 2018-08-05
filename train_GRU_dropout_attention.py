@@ -218,9 +218,8 @@ def contextwin(l, win, seq_size):
     return out
     
     
-def evaluate(s, out, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, mixed = False):
-
-    #store attention weight
+def evaluate(s, out, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, mixed=False, logger=None):
+    # store attention weight
     wt_file = open('att_weight_res', 'w')
     true_list = []
     true_a = []
@@ -228,6 +227,7 @@ def evaluate(s, out, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, mix
 
     pred_a = []
     pred_o = []
+    precision_aspect, recall_aspect, f1_aspect, precision_op, recall_op, f1_op = 0, 0, 0, 0, 0, 0
     
     for data in test_dict:
         nodes = data.get_nodes()
@@ -321,12 +321,15 @@ def evaluate(s, out, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, mix
         wt_file.write('\n')
         '''
 
-    print "precision_aspect: \n", precision_aspect
-    print "recall_aspect: \n", recall_aspect
-    print "f1_aspect: \n", f1_aspect
-    print "precision_opinion: \n", precision_op
-    print "recall_opinion: \n", recall_op
-    print "f1_opinion: \n", f1_op
+    logger.info('ap={:.4f}, ar={:.4f}, af1={:.4f}, op={:.4f}, or={:.4f}, of1={:.4f}'.format(
+        precision_aspect, recall_aspect, f1_aspect, precision_op, recall_op, f1_op
+    ))
+    # print "precision_aspect: \n", precision_aspect
+    # print "recall_aspect: \n", recall_aspect
+    # print "f1_aspect: \n", f1_aspect
+    # print "precision_opinion: \n", precision_op
+    # print "recall_opinion: \n", recall_op
+    # print "f1_opinion: \n", f1_op
     out.write(str(epoch))
     out.write('\n')
     out.write("aspect_precision: ")
@@ -519,19 +522,20 @@ if __name__ == '__main__':
                 err, aux, We = train(s, lstm_attention, aux, inst, We, \
                   args['d'], args['c'], len(vocab), train_size)
 
-                lstring = 'epoch: ' + str(epoch) + ' batch_ind: ' + str(inst_ind) + \
-                        ' error, ' + str(err) + ' time = '+ str(time.time()-now) + ' sec'
-                print lstring
+                # lstring = 'epoch: ' + str(epoch) + ' batch_ind: ' + str(inst_ind) + \
+                #         ' error, ' + str(err) + ' time = '+ str(time.time()-now) + ' sec'
+                # print lstring
 
                 epoch_error += err
                 
                 if inst_ind % 500 == 0 and inst_ind != 0:                    
-                    evaluate(s, outcome, epoch, aux, test_dict, We, vocab, lstm_attention, d, c)
+                    evaluate(s, outcome, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, logger=logger)
 
             # done with epoch
-            print 'done with epoch ', epoch, ' epoch error = ', epoch_error, ' min error = ', min_error
+            # print 'done with epoch ', epoch, ' epoch error = ', epoch_error, ' min error = ', min_error
             lstring = 'done with epoch ' + str(epoch) + ' epoch error = ' + str(epoch_error) \
                      + ' min error = ' + str(min_error) + '\n\n'
+            logger.info(lstring)
 
             # save parameters if the current model is better than previous best model
             if epoch_error < min_error:
