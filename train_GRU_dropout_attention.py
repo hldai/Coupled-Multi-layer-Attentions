@@ -3,8 +3,7 @@ import numpy as np
 import cPickle, time, argparse
 import util.seqItem
 import datetime
-from util.loggingutils import init_logging
-import logging
+from util.loggingutils import init_logger
 
 import random
 import gru_tensor_pdropout_attention
@@ -436,7 +435,7 @@ def train(s, lstm_attention, aux, data, L, d, c, len_voc, train_size):
 # train qanta and save model
 if __name__ == '__main__':
     str_today = datetime.date.today().strftime('%y-%m-%d')
-    init_logging('log/res-{}.log'.format(str_today), mode='a', to_stdout=True)
+    logger = init_logger('log/res-{}.log'.format(str_today), mode='a')
     # command line arguments
     parser = argparse.ArgumentParser(description='Attention Network for Fine-grained Opinion Mining.')
     parser.add_argument('-data', help='location of dataset', default='util/data_semEval/final_input_res15')
@@ -453,7 +452,7 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
     outcome = open('outcomes_gru_tensor_pdropout_res15.txt', 'a')
 
-    logging.info('dataset file: {}'.format(args['data']))
+    logger.info('dataset file: {}'.format(args['data']))
     
     #build lstm model
     s = {'fold':5, # 5 folds 0,1,2,3,4
@@ -487,8 +486,8 @@ if __name__ == '__main__':
     # print 'number of training sentences:', len(train_dict)
     # print 'number of classes:', args['c']
 
-    logging.info('number of training sentences: {}'.format(len(train_dict)))
-    logging.info('number of classes: {}'.format(args['c']))
+    logger.info('number of training sentences: {}'.format(len(train_dict)))
+    logger.info('number of classes: {}'.format(args['c']))
 
     # add train_size
     train_size = len(train_dict)

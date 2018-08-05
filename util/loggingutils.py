@@ -1,11 +1,15 @@
 import logging
 
 
-def init_logging(logfile='main.log', mode='a', to_stdout=False):
-    handlers = list()
+def init_logger(logfile='main.log', mode='a', to_stdout=True):
+    logger = logging.getLogger('dhl')
     if logfile is not None:
-        handlers.append(logging.FileHandler(logfile, mode=mode))
+        fh = logging.FileHandler(logfile, mode=mode)
+        fmt = logging.Formatter('%(asctime)s - %(filename)s:%(lineno)s - %(levelname)s - %(message)s',
+                                datefmt='%y-%m-%d %H:%M:%S')
+        fh.setFormatter(fmt)
+        logger.addHandler(fh)
     if to_stdout:
-        handlers.append(logging.StreamHandler())
-    logging.basicConfig(format='%(asctime)s - %(filename)s:%(lineno)s - %(levelname)s - %(message)s',
-                        datefmt='%y-%m-%d %H:%M:%S', handlers=handlers, level=logging.INFO)
+        logger.addHandler(logging.StreamHandler())
+    logger.setLevel(logging.DEBUG)
+    return logger
