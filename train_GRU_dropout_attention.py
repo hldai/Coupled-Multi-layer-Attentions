@@ -2,11 +2,15 @@
 import numpy as np
 import cPickle, time, argparse
 import util.seqItem
+import datetime
+from util.loggingutils import init_logging
+import logging
 
 import random
 import gru_tensor_pdropout_attention
 
-#f1 score
+
+# f1 score
 def score_aspect(true_list, predict_list):
     
     correct = 0
@@ -343,10 +347,9 @@ def evaluate(s, out, epoch, aux, test_dict, We, vocab, lstm_attention, d, c, mix
 
     wt_file.close()
 
+
 # splits the training data into minibatches
 def train(s, lstm_attention, aux, data, L, d, c, len_voc, train_size):
-
-    
     error = 0.0
     size = 0
 
@@ -430,11 +433,10 @@ def train(s, lstm_attention, aux, data, L, d, c, len_voc, train_size):
     return cost, aux, L
 
 
-
 # train qanta and save model
 if __name__ == '__main__':
-    
-
+    str_today = datetime.date.today().strftime('%y-%m-%d')
+    init_logging('log/res-{}.log'.format(str_today), mode='a', to_stdout=True)
     # command line arguments
     parser = argparse.ArgumentParser(description='Attention Network for Fine-grained Opinion Mining.')
     parser.add_argument('-data', help='location of dataset', default='util/data_semEval/final_input_res15')
@@ -443,9 +445,8 @@ if __name__ == '__main__':
     
     # no of classes
     parser.add_argument('-c', help='number of classes', type=int, default=3)
-                    
-    parser.add_argument('-b', '--batch_size', help='adagrad minibatch size', type=int,\
-                        default=1)
+
+    parser.add_argument('-b', '--batch_size', help='adagrad minibatch size', type=int, default=1)
     parser.add_argument('-ep', '--num_epochs', help='number of training epochs, can also determine \
                          dynamically via validate method', type=int, default=8)
 
@@ -479,20 +480,21 @@ if __name__ == '__main__':
     vocab, train_dict, test_dict = \
         cPickle.load(open(args['data'], 'rb'))
 
-
     We = cPickle.load(open(args['We'], 'rb'))
 
-    print 'number of training sentences:', len(train_dict)
-    print 'number of classes:', args['c']
+    # print 'number of training sentences:', len(train_dict)
+    # print 'number of classes:', args['c']
 
-    #add train_size
+    logging.info('number of training sentences: {}'.format(len(train_dict)))
+    logging.info('number of classes: {}'.format(args['c']))
+
+    # add train_size
     train_size = len(train_dict)
 
     c = args['c']
     d = args['d']
-
     
-    aux = {'padding':np.random.uniform(-0.2, 0.2, (d,)), 'punkt':np.random.uniform(-0.2, 0.2, (d,))}
+    aux = {'padding': np.random.uniform(-0.2, 0.2, (d,)), 'punkt': np.random.uniform(-0.2, 0.2, (d,))}
     for tdata in [train_dict]:
 
         min_error = float('inf')
@@ -534,7 +536,6 @@ if __name__ == '__main__':
             if epoch_error < min_error:
                 min_error = epoch_error
                 print 'saving model...'
-
 
     outcome.close()
     

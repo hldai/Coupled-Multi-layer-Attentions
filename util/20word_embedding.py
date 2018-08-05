@@ -42,10 +42,9 @@ for ind, word in enumerate(vocab):
         print word,
         for i in range(200):
             word_embedding[i][ind] = 2 * np.random.rand() - 1
-    
+
 print len(vocab)
 print count
 #print word_embedding
-
 
 cPickle.dump(word_embedding, open("data_semEval/word_embeddings200_res15", "wb"))

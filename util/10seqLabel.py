@@ -35,6 +35,7 @@ as_label_test = open('data_semEval/aspectTerm_restest15', 'r').read().splitlines
 op_label_train = open('data_semEval/sentence_res15_op', 'r').read().splitlines()
 op_label_test = open('data_semEval/sentence_restest15_op', 'r').read().splitlines()
 
+
 def label_generation(sequence, as_label, op_label):
 
     if sequence.strip():
@@ -49,7 +50,6 @@ def label_generation(sequence, as_label, op_label):
         aspects = as_label.rstrip()
         ops = op_label.strip()
 
-        
         if '##' in ops:
             opinions_tuple = ops.split('##')[1].strip()
             opinions_tuple = opinions_tuple.split(',')
@@ -100,7 +100,8 @@ def label_generation(sequence, as_label, op_label):
                             seq.get(ind).trueLabel = 1
                             
     return seq
-                    
+
+
 for item, as_item, op_item in zip(data_train, as_label_train, op_label_train):
     seq_item = label_generation(item, as_item, op_item)
     train_dict.append(seq_item)    
@@ -116,11 +117,9 @@ for item, as_item, op_item in zip(data_test, as_label_test, op_label_test):
     for node in seq_item.get_nodes():
         if node.word.lower() not in vocab:
             vocab.append(node.word.lower())
-            
+
         node.ind = vocab.index(node.word.lower())
-               
+
 
 print 'vocab: ', len(vocab)
 cPickle.dump((vocab, train_dict, test_dict), open("data_semEval/final_input_res15", "wb"))
-
-
