@@ -452,6 +452,8 @@ if __name__ == '__main__':
 
     args = vars(parser.parse_args())
     outcome = open('outcomes_gru_tensor_pdropout_res15.txt', 'a')
+
+    logging.info('dataset file: {}'.format(args['data']))
     
     #build lstm model
     s = {'fold':5, # 5 folds 0,1,2,3,4

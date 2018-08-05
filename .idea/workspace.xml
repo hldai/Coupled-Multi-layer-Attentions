@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="925fcced-9c0f-4db9-bf92-e561b56a4f65" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/util/loggingutils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_GRU_dropout_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_GRU_dropout_attention.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/10seqLabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/10seqLabel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/20word_embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/20word_embedding.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,23 +21,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="md" value="1" />
-          <entry key="py" value="4" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="4" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="83" />
+          <entry key="py" value="136" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="83" />
+          <entry key="Python" value="136" />
         </counts>
       </usages-collector>
     </session>
@@ -50,20 +47,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train_GRU_dropout_attention.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="481" lean-forward="true" selection-start-line="481" selection-end-line="481" />
+            <state relative-caret-position="327">
+              <caret line="455" column="57" selection-start-line="455" selection-start-column="57" selection-end-line="455" selection-end-column="57" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util/loggingutils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -120,9 +108,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="137" />
-    <option name="y" value="-28" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="68" />
+    <option name="y" value="65" />
     <option name="width" value="1693" />
     <option name="height" value="970" />
   </component>
@@ -137,6 +125,11 @@
             <path>
               <item name="Coupled-Multi-layer-Attentions" type="b2602c69:ProjectViewProjectNode" />
               <item name="Coupled-Multi-layer-Attentions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Coupled-Multi-layer-Attentions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Coupled-Multi-layer-Attentions" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -157,6 +150,34 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="train_GRU_dropout_attention" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Coupled-Multi-layer-Attentions" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_GRU_dropout_attention.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.train_GRU_dropout_attention" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -171,11 +192,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="320" y="29" width="1354" height="776" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15257595" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17526555" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -221,6 +242,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Anaconda2/Lib/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="1622" column="4" selection-start-line="1622" selection-start-column="4" selection-end-line="1622" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/util/loggingutils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -230,8 +258,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_GRU_dropout_attention.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="481" lean-forward="true" selection-start-line="481" selection-end-line="481" />
+        <state relative-caret-position="327">
+          <caret line="455" column="57" selection-start-line="455" selection-start-column="57" selection-end-line="455" selection-end-column="57" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
