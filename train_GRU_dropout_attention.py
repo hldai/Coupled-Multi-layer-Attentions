@@ -77,8 +77,7 @@ def score_aspect(true_list, predict_list):
         for num in range(len(predict)):
             if predict[num] == '1':
                 predicted += 1
-        
-                        
+
         i += 1
                 
     precision = float(correct) / (predicted + 1e-6)
@@ -450,14 +449,14 @@ if __name__ == '__main__':
 
     parser.add_argument('-b', '--batch_size', help='adagrad minibatch size', type=int, default=1)
     parser.add_argument('-ep', '--num_epochs', help='number of training epochs, can also determine \
-                         dynamically via validate method', type=int, default=8)
+                         dynamically via validate method', type=int, default=50)
 
     args = vars(parser.parse_args())
     outcome = open('outcomes_gru_tensor_pdropout_res15.txt', 'a')
 
     logger.info('dataset file: {}'.format(args['data']))
     
-    #build lstm model
+    # build lstm model
     s = {'fold':5, # 5 folds 0,1,2,3,4
 		'lr':0.07,
 		'verbose':1,

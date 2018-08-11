@@ -56,14 +56,11 @@ class model(object):
         #self.Who = theano.shared(0.2 * uniform(-1.0, 1.0, (n_hidden, n_o)).astype(dtype))
         #self.Wco = theano.shared(0.2 * uniform(-1.0, 1.0, (n_c, n_o)).astype(dtype))
         #self.bo = theano.shared(numpy.zeros(n_o, dtype=theano.config.floatX))
-        
 
         self.c0 = theano.shared(numpy.zeros(n_hidden, dtype=dtype))
         #self.h0 = T.tanh(self.c0)
         self.h0 = theano.shared(numpy.zeros(n_hidden, dtype=dtype))
-        
 
-        
         # classification weights
         # self.Wy0_a = theano.shared(0.2 * uniform(-1.0, 1.0, (n_hidden + featdim, n_y)).astype(dtype))
         # self.Wy1_a = theano.shared(0.2 * uniform(-1.0, 1.0, (n_hidden + featdim, n_y)).astype(dtype))
@@ -269,8 +266,6 @@ class model(object):
             alpha = softmax(e)[0]
             ctx_pool = T.dot(alpha, h)
             return ctx_pool, e
-            
-
 
         def memory_iteration(ma_t, mo_t, h, pb):
             ca_tp1, _ = attention_pool_aspect(h, ma_t, mo_t, pb)
@@ -346,7 +341,6 @@ class model(object):
         yo_label = T.argmax(yo_pred, axis=1)
         ya_pos = ya_pred[:, 1]
         yo_pos = yo_pred[:, 1]
-
 
         # cost and gradients and learning rate
         lr = T.scalar('lr')

@@ -57,7 +57,7 @@ def label_generation(sequence, as_label, op_label):
             for opinion_tuple in opinions_tuple:
                 opinion_tuple = opinion_tuple.strip()
                 op_list = opinion_tuple.split()[:-1]
-                #op_list = op.split()
+                # op_list = op.split()
             
                 if len(op_list) > 1:
                     for ind, term in enumerate(nodes):
@@ -77,10 +77,10 @@ def label_generation(sequence, as_label, op_label):
         if aspects != 'NULL':
             aspects = aspects.split(',')
             
-            #deal with same word but different labels
+            # deal with same word but different labels
             for aspect in aspects:
                 aspect = aspect.strip()
-                #aspect is a phrase
+                # aspect is a phrase
                 if ' ' in aspect:
                     aspect_list = aspect.split()
                     for ind, term in enumerate(nodes):
@@ -93,7 +93,7 @@ def label_generation(sequence, as_label, op_label):
                                         seq.get(ind + i + 1).trueLabel = 2
                             break
 
-                #aspect is a single word
+                # aspect is a single word
                 else:
                     for ind, term in enumerate(nodes):
                         if term == aspect and seq.get(ind).trueLabel == 0:
