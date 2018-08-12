@@ -348,7 +348,7 @@ def __train(dataset_file):
 
     # build lstm model
     s = {'fold': 5,  # 5 folds 0,1,2,3,4
-         # 'lr': 0.07,
+         'lr': 0.07,
          'verbose': 1,
          'decay': False,  # decay on the learning rate if improvement stops
          'win': 3,  # number of words in the context window
@@ -413,7 +413,7 @@ def __train(dataset_file):
             # done with epoch
             # print 'done with epoch ', epoch, ' epoch error = ', epoch_error, ' min error = ', min_error
             lstring = 'done with epoch ' + str(epoch) + ' epoch error = ' + str(epoch_error) \
-                     + ' min error = ' + str(min_error)
+                      + ' min error = ' + str(min_error)
             logger.info(lstring)
 
             # save parameters if the current model is better than previous best model
@@ -426,9 +426,9 @@ def __train(dataset_file):
 
 str_today = datetime.date.today().strftime('%y-%m-%d')
 logger = init_logger('log/cmla-{}.log'.format(str_today), mode='a')
-dataset_file = 'util/data_semEval/final_input_res15'
+dataset_file = 'util/data_semEval/final_input_res15_dhl.pkl'
 word_embed_file = 'util/data_semEval/word_embeddings200_res15'
 n_epochs = 50
-word_embed_dim = 200
+word_embed_dim = 100
 n_classes = 3
 __train(dataset_file)

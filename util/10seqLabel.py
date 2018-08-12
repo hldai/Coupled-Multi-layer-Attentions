@@ -122,4 +122,4 @@ for item, as_item, op_item in zip(data_test, as_label_test, op_label_test):
 
 
 print 'vocab: ', len(vocab)
-cPickle.dump((vocab, train_dict, test_dict), open("data_semEval/final_input_res15", "wb"))
+cPickle.dump((vocab, train_dict, test_dict), open("data_semEval/final_input_res15_dhl.pkl", "wb"))
